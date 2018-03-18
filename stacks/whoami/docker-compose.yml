@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  web:
+    image: emilevauge/whoami
+    deploy:
+      mode: replicated
+      replicas: 6
+      placement:
+        constraints: [node.role == worker]
+      # WARNING : this location is important for labels to deploy swarm services
+      labels:
+        - "traefik.enabled=true"
+        - "traefik.port=80"
+        - "traefik.frontend.rule=Host:whoami.swarm-manager.vbox"
+        #- "traefik.backend.loadbalancer.stickiness=true"
+networks:
+    default:
+        external:
+            name: traefik
+

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ "$UID" -eq "0" ]; then
+    echo "use ./configure-dnsmasq (not sudo ./configure-dnsmasq)"
+    exit 1
+fi
+
+MANAGER_IP=$(docker-machine ip manager)
+echo "address=/swarm-manager.vbox/$MANAGER_IP" > /tmp/swarm-manager-vbox
+
+sudo cp /tmp/swarm-manager-vbox /etc/dnsmasq.d/swarm-manager-vbox
+sudo service dnsmasq restart
