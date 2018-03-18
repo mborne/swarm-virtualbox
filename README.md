@@ -4,7 +4,7 @@ Helpers to experiment `docker swarm`, `portainer` and `traefik` based on `docker
 
 ![swarm visualizer](img/swarm-visualizer.png)
 
-## cluster initialization
+## cluster initialization
 
 * `bin/create-manager.sh` : create swarm manager node
 * `bin/create-worker.sh <name>` : create swarm worker node
